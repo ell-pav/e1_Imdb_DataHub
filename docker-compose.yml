@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16
+    container_name: imdb_db
+    environment:
+      POSTGRES_USER: imdb_user
+      POSTGRES_PASSWORD: imdb_pass
+      POSTGRES_DB: imdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/dockerfile.api
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: docker/dockerfile.streamlit
+    depends_on:
+      - api
+    ports:
+      - "8501:8501" 
+
+volumes:
+  db_data:

@@ -131,7 +131,7 @@ src/
 
 ---
 
-# 🗄️ Modélisation de la base de données
+#  Modélisation de la base de données
 
 ## Entités principales
 
@@ -320,7 +320,7 @@ Certaines routes sont protégées via JWT.
 
 ---
 
-# 📡 Endpoints API
+#  Endpoints API
 
 ## Movies
 
@@ -348,7 +348,7 @@ Certaines routes sont protégées via JWT.
 
 ---
 
-# 📊 Dashboard Streamlit
+# Dashboard Streamlit
 
 Le projet inclut une interface Streamlit permettant :
 
@@ -381,7 +381,7 @@ docker run -p 8000:8000 imdb-datahub
 
 ---
 
-# 📈 Monitoring
+#  Monitoring
 
 ## Outils utilisés
 
@@ -409,7 +409,7 @@ pytest
 
 ---
 
-# 🔒 Conformité RGPD
+#  Conformité RGPD
 
 Le projet respecte les principes du RGPD :
 

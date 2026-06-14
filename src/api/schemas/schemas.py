@@ -127,3 +127,14 @@ class ReviewRead(ReviewBase):
 
     class Config:
         from_attributes = True
+
+# ----------------------
+#   ML SENTIMENT
+# ----------------------
+
+class SentimentRequest(BaseModel):
+    text: str
+
+
+class SentimentResponse(BaseModel):
+    sentiment: str

@@ -1,33 +1,42 @@
+version: "3.9"
+
 services:
-  db:
-    image: postgres:16
-    container_name: imdb_db
-    environment:
-      POSTGRES_USER: imdb_user
-      POSTGRES_PASSWORD: imdb_pass
-      POSTGRES_DB: imdb
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
 
   api:
     build:
       context: .
       dockerfile: docker/dockerfile.api
-    depends_on:
-      - db
+
     ports:
       - "8000:8000"
+
+    volumes:
+      - .:/app
 
   streamlit:
     build:
       context: .
       dockerfile: docker/dockerfile.streamlit
+
+    ports:
+      - "8501:8501"
+
+    volumes:
+      - .:/app
+
     depends_on:
       - api
+
+  uptime-kuma:
+    image: louislam/uptime-kuma
+
+    container_name: uptime-kuma
+
     ports:
-      - "8501:8501" 
+      - "3001:3001"
+
+    volumes:
+      - kuma_data:/app/data
 
 volumes:
-  db_data:
+  kuma_data:

@@ -142,7 +142,7 @@ def get_reviews_for_user(db: Session, user_id: int) -> List[models.Review]:
     return db.query(models.Review).filter(models.Review.user_id == user_id).all()
 
 
-# ========== Petit test si exécuté en module (optionnel) ==========
+# ========== Petit test si exécuté en module ==========
 if __name__ == "__main__":
     # test rapide : créer une session et lister genres
     for db in get_db():

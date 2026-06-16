@@ -1,9 +1,9 @@
 # src/api/crud.py
 from typing import List, Optional, Generator
 from sqlalchemy.orm import Session
-from src.database import models  # importe le module models correctement
+from src.database import models 
 from src.database.db_setup import SessionLocal, init_db
-from src.api.schemas import schemas  # si tu veux utiliser les schemas ici
+from src.api.schemas import schemas #preparé, non utilisé
 
 # initialisation simple (s'assurer que les tables existent)
 init_db()

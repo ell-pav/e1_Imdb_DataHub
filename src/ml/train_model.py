@@ -4,10 +4,14 @@ import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    classification_report,
+    confusion_matrix
+)
 
-df = pd.read_csv("data/raw/imdb_reviews.csv")
+df = pd.read_csv("data/raw/imdb_dataset_kaggle.csv")
 
-X = df["review_text"]
+X = df["review"]
 y = df["sentiment"]
 
 vectorizer = TfidfVectorizer(max_features=5000)
@@ -25,7 +29,26 @@ model = LogisticRegression(max_iter=1000)
 
 model.fit(X_train, y_train)
 
-print("Accuracy :", model.score(X_test, y_test))
+predictions = model.predict(X_test)
 
-joblib.dump(model, "src/ml/sentiment_model.pkl")
-joblib.dump(vectorizer, "src/ml/vectorizer.pkl")
+print(
+    "Accuracy :",
+    model.score(X_test, y_test)
+)
+
+print(
+    confusion_matrix(
+        y_test,
+        predictions
+    )
+)
+
+print(
+    classification_report(
+        y_test,
+        predictions
+    )
+)
+
+#joblib.dump(model, "src/ml/sentiment_model.pkl")
+#joblib.dump(vectorizer, "src/ml/vectorizer.pkl")
